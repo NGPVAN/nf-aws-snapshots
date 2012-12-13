@@ -57,7 +57,7 @@ export PATH=$PATH:$EC2_HOME/bin
 AWS_INSTANCE_ID=`ec2metadata --instance-id`
 
 id_region_url="http://169.254.169.254/latest/dynamic/instance-identity/document"
-AWS_REGION=`curl "${id_region_url}" | grep region | cut -d\" -f4`
+AWS_REGION=`curl -s "${id_region_url}" | grep region | cut -d\" -f4`
 
 export AWS_INSTANCE_ID
 export AWS_REGION
