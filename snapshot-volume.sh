@@ -17,7 +17,7 @@ fi
 source environment.sh
 
 VOL=`ec2-describe-volumes \
-    --filter="attachment.instance-id=$INSTANCE_ID" \
+    --filter="attachment.instance-id=$AWS_INSTANCE_ID" \
 | grep "${attachment}" \
 | awk ' { print $2 }'`
 
