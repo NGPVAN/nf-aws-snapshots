@@ -14,7 +14,7 @@ if [ -z "$description" ]; then
     exit 1
 fi
 
-source environment.sh
+source "$(dirname -- $(type -P "$0"))/environment.sh"
 
 VOL=`ec2-describe-volumes \
     --filter="attachment.instance-id=$AWS_INSTANCE_ID" \

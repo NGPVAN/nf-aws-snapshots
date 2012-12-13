@@ -12,8 +12,8 @@ if [ -z "$description" ]; then
     echo "Usage: $0 <number to keep, ex: 7> <description to search for>"
     exit 1
 fi
-source environment.sh
 
+source "$(dirname -- $(type -P "$0"))/environment.sh"
 
 to_delete=`ec2-describe-snapshots \
         --filter="description=${description}" \
