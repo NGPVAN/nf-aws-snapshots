@@ -1,0 +1,2 @@
+1. Install ec2-api-tools
+2. Put ec2.sh into /etc/ec2.sh with you specific configuration options
