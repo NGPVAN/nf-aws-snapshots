@@ -24,6 +24,6 @@ to_copy=`ec2-describe-snapshots \
 `
 
 for i in $to_copy; do
-   ec2-copy-snapshot --region ${region} -r ${AWS_REGION} -s $i
+   ec2-copy-snapshot --region ${region} -r ${AWS_REGION} -s $i -d "${description}"
 done
 

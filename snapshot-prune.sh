@@ -2,6 +2,7 @@
 
 keep=$1
 description=$2
+region=$3
 
 if [ -z "$keep" ]; then
     echo "Usage: $0 <number to keep, ex: 7> <description to search for>"
@@ -15,7 +16,12 @@ fi
 
 source "$(dirname -- $(type -P "$0"))/environment.sh"
 
+if [ -z "$region" ]; then
+   region=${AWS_REGION};
+fi
+
 to_delete=`ec2-describe-snapshots \
+        --region=${region} \
         --filter="description=${description}" \
         --filter="status=completed" \
     | sort -k4 \
@@ -24,6 +30,6 @@ to_delete=`ec2-describe-snapshots \
 `
 
 for i in $to_delete; do
-    ec2-delete-snapshot $i
+    ec2-delete-snapshot --region=${region} $i
 done
 
