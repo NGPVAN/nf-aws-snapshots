@@ -18,12 +18,12 @@ source "$(dirname -- $(type -P "$0"))/environment.sh"
 to_copy=`ec2-describe-snapshots \
         --filter="description=${description}" \
         --filter="status=completed" \
-    | sort -k4 \
-    | head -n-1 \
+    | sort -rk4 \
+    | head -n1 \
     | awk '{ print $2 }'
 `
 
 for i in $to_copy; do
-    ec2-copy-snapshot -r ${AWS_REGION} -s $i -—region ${region}
+   ec2-copy-snapshot --region ${region} -r ${AWS_REGION} -s $i
 done
 
