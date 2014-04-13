@@ -11,7 +11,7 @@ source "$(dirname -- $(type -P "$0"))/environment.sh"
 
 EC2_INSTANCE_ID=$(ec2metadata --instance-id)
 
-to_attach=`ec1-describe-volumes \
+to_attach=`ec2-describe-volumes \
         --filter="status=available" \
         --filter="size=${size}" \
     | sort -rk7 \
