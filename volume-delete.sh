@@ -12,13 +12,12 @@ source "$(dirname -- $(type -P "$0"))/environment.sh"
 to_delete=`ec2-describe-volumes \
         --filter="status=available" \
         --filter="size=${size}" \
-        --filter="attachment.status=detached" \
     | sort -rk7 \
     | head -n1 \
     | awk '{ print $2 }'
 `
 
 for v in $to_delete; do
-   ec2-delete-volume $v -i
+   ec2-delete-volume $v
 done
 

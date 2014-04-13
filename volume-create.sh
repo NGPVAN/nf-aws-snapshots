@@ -20,7 +20,7 @@ to_create=`ec2-describe-snapshots \
         --filter="status=completed" \
     | sort -rk4 \
     | head -n1 \
-    | awk '{ print $1 }'
+    | awk '{ print $2 }'
 `
 
 for i in $to_create; do
